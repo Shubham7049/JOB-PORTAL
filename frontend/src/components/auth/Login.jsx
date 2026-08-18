@@ -68,7 +68,7 @@ const Login = () => {
           <h1 className="font-bold text-xl mb-5">Log in</h1>
           <div>
             <Label>Email</Label>
-            <Input type="email" placeholder="aanchalmittal@gmail.com" name="email" value={input.email} onChange={changeEventHandler} />
+            <Input type="email" placeholder="Ex-shubham@gmail.com" name="email" value={input.email} onChange={changeEventHandler} />
           </div>
           <div>
             <Label>Password</Label>
