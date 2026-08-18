@@ -17,40 +17,28 @@ const app = express();
 
 const _dirname = path.resolve();
 
-// ===============================
 // Middleware
-// ===============================
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// ===============================
 // CORS
-// ===============================
-
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: true,
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 
-// ===============================
 // Routes
-// ===============================
-
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// ===============================
-// Static Frontend
-// ===============================
-
+// Serve React frontend
 app.use(
-  express.static(path.join(_dirname, "/frontend/dist"))
+  express.static(path.join(_dirname, "frontend", "dist"))
 );
 
 app.get("*", (_, res) => {
@@ -59,13 +47,10 @@ app.get("*", (_, res) => {
   );
 });
 
-// ===============================
 // Server
-// ===============================
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   connectDB();
   console.log(`server running on port ${PORT}`);
-}); 
+});
